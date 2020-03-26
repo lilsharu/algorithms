@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861b081c-69a4-4d4d-87e2-318aba14028b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Algorithms.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UnionFind/QuickFindUF.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UnionFind/QuickUnionUF.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UnionFind/WeightedQuickUnionUF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +24,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ZcehQMvO0Lg8MIJUsdgqHk8gwj" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -39,6 +38,12 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="Console" />
   </component>
   <component name="SvnConfiguration">
@@ -51,14 +56,35 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585142927890</updated>
-      <workItem from="1585142936356" duration="1516000" />
+      <workItem from="1585142936356" duration="2364000" />
+      <workItem from="1585171901918" duration="2215000" />
     </task>
+    <task id="LOCAL-00001" summary="Added First Two Parts of the Union Find Case Study">
+      <created>1585144710061</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1585144710061</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added First Two Parts of the Union Find Case Study" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added First Two Parts of the Union Find Case Study" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="221" y="0" key="CommitChangelistDialog2" timestamp="1585144708596">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="221" y="0" key="CommitChangelistDialog2/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585144708596" />
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1585171929169">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585171929169" />
     <state x="2412" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585143136048">
       <screen x="1920" y="0" width="1366" height="738" />
     </state>
