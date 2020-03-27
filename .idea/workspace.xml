@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861b081c-69a4-4d4d-87e2-318aba14028b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/UnionFind/WeightedQuickUnionUF.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/algs4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UnionFind/Assignment/Percolation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UnionFind/Assignment/PercolationStats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UnionFind/SuccessorWithDelete.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UnionFind/WeightedQuickUnionUFCanonical.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UnionFind/WeightedQuickUnionUF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UnionFind/WeightedQuickUnionUF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,13 +44,22 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Java Libraries/algs4.jar!/" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="Console" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="UnionFind" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -57,7 +72,10 @@
       <option name="presentableId" value="Default" />
       <updated>1585142927890</updated>
       <workItem from="1585142936356" duration="2364000" />
-      <workItem from="1585171901918" duration="2215000" />
+      <workItem from="1585171901918" duration="2286000" />
+      <workItem from="1585188050077" duration="767000" />
+      <workItem from="1585226289253" duration="598000" />
+      <workItem from="1585246401775" duration="6018000" />
     </task>
     <task id="LOCAL-00001" summary="Added First Two Parts of the Union Find Case Study">
       <created>1585144710061</created>
@@ -66,21 +84,49 @@
       <option name="project" value="LOCAL" />
       <updated>1585144710061</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Finished Case Study with Weighted QuickUnion and Path Compression">
+      <created>1585181348750</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1585181348750</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="UpdateCopyrightCheckinHandler">
+    <option name="UPDATE_COPYRIGHT" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="Added First Two Parts of the Union Find Case Study" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added First Two Parts of the Union Find Case Study" />
+    <MESSAGE value="Finished Case Study with Weighted QuickUnion and Path Compression" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished Case Study with Weighted QuickUnion and Path Compression" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="221" y="0" key="CommitChangelistDialog2" timestamp="1585144708596">
+    <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1585270675405">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="221" y="0" key="CommitChangelistDialog2/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585144708596" />
+    <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.689@0.0.1280.689" timestamp="1585270675405" />
+    <state x="221" y="0" key="CommitChangelistDialog2" timestamp="1585181356823">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="221" y="0" key="CommitChangelistDialog2/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585181356823" />
+    <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1585272439089">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585181393918" />
+    <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1585272439089" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1585272444467">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1585272444467" />
     <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1585171929169">
       <screen x="0" y="0" width="1280" height="689" />
     </state>

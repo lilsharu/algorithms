@@ -1,15 +1,18 @@
 package UnionFind;
 
-public class WeightedQuickUnionUF {
+public class WeightedQuickUnionUFCanonical {
     private int[] size;
     private int[] id;
+    private int[] maxInt;
 
-    public WeightedQuickUnionUF(int N) {
+    public WeightedQuickUnionUFCanonical(int N) {
         id = new int[N];
         size = new int[N];
+        maxInt = new int[N];
         for (int i = 0; i < N; i++) {
             id[i] = i;
             size[i] = 1;
+            maxInt[i] = i;
         }
     }
 
@@ -32,15 +35,19 @@ public class WeightedQuickUnionUF {
         if (size[pid] > size[qid]) {
             id[qid] = pid;
             size[pid] += size[qid];
+            if (maxInt[qid] > maxInt[pid]) {
+                maxInt[pid] = maxInt[qid];
+            }
         } else {
             id[pid] = qid;
             size[qid] += size[pid];
+            if (maxInt[pid] > maxInt[qid]) {
+                maxInt[qid] = maxInt[pid];
+            }
         }
     }
 
-//    public int find(int j) {
-//        for (int i = 0; i < size[root(i)]; i++) {
-//
-//        }
-//    }
+    public int find(int j) {
+        return maxInt[root(j)];
+    }
 }
