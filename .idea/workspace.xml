@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861b081c-69a4-4d4d-87e2-318aba14028b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/algs4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UnionFind/Assignment/Percolation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UnionFind/Assignment/PercolationStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UnionFind/SuccessorWithDelete.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UnionFind/WeightedQuickUnionUFCanonical.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algorithms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UnionFind/WeightedQuickUnionUF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UnionFind/WeightedQuickUnionUF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UnionFind/Assignment/Percolation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UnionFind/Assignment/Percolation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UnionFind/Assignment/PercolationStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UnionFind/Assignment/PercolationStats.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +14,20 @@
   </component>
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -44,6 +54,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="js.buildTools.grunt.grunt-cli.package" value="" />
+    <property name="js.buildTools.gulp.gulp_package_dir" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Java Libraries/algs4.jar!/" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -51,6 +63,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.jest.jest_package" value="" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -60,6 +73,36 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="UnionFind" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="PercolationStats" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="UnionFind.Assignment.PercolationStats" />
+      <module name="Algorithms" />
+      <option name="PROGRAM_PARAMETERS" value="100 10" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <module name="Algorithms" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="js.build_tools.grunt">
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -75,7 +118,9 @@
       <workItem from="1585171901918" duration="2286000" />
       <workItem from="1585188050077" duration="767000" />
       <workItem from="1585226289253" duration="598000" />
-      <workItem from="1585246401775" duration="6018000" />
+      <workItem from="1585246401775" duration="6423000" />
+      <workItem from="1585314296995" duration="4755000" />
+      <workItem from="1585505867662" duration="3502000" />
     </task>
     <task id="LOCAL-00001" summary="Added First Two Parts of the Union Find Case Study">
       <created>1585144710061</created>
@@ -91,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585181348750</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Started Working on first Programming Assignment">
+      <created>1585274999448</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1585274999448</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,36 +156,81 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="Added First Two Parts of the Union Find Case Study" />
     <MESSAGE value="Finished Case Study with Weighted QuickUnion and Path Compression" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished Case Study with Weighted QuickUnion and Path Compression" />
+    <MESSAGE value="Started Working on first Programming Assignment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started Working on first Programming Assignment" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="233" y="4" key="#SQL_Dialects" timestamp="1585355959081">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="233" y="4" key="#SQL_Dialects/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585355959081" />
+    <state x="191" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585509087634">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="191" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585357659506" />
+    <state x="191" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1585509087634" />
+    <state x="466" y="129" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1585356518419">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="466" y="129" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585356518419" />
     <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1585270675405">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.689@0.0.1280.689" timestamp="1585270675405" />
-    <state x="221" y="0" key="CommitChangelistDialog2" timestamp="1585181356823">
+    <state x="221" y="0" key="CommitChangelistDialog2" timestamp="1585274998146">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="221" y="0" key="CommitChangelistDialog2/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585181356823" />
-    <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1585272439089">
+    <state x="221" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1585274998146" />
+    <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1585356432336">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585181393918" />
+    <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585356432336" />
     <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1585272439089" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1585272444467">
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom" timestamp="1585509553491">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585357819778" />
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1585509553491" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center" timestamp="1585509553491">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585357819778" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1585509553491" />
+    <state width="1237" height="166" key="GridCell.Tab.0.left" timestamp="1585509553491">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585357819778" />
+    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1585509553491" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right" timestamp="1585509553491">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585357819778" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1585509553491" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1585356446071">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585356446071" />
     <state x="121" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1585272444467" />
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1585171929169">
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1585506373254">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585171929169" />
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.689@0.0.1280.689" timestamp="1585506373254" />
     <state x="2412" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585143136048">
       <screen x="1920" y="0" width="1366" height="738" />
     </state>
     <state x="2412" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689/1920.0.1366.738@1920.0.1366.738" timestamp="1585143136048" />
+    <state x="297" y="153" key="run.anything.popup" timestamp="1585509018225">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="297" y="153" key="run.anything.popup/0.0.1280.689@0.0.1280.689" timestamp="1585509018225" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1585356329861">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585356329861" />
   </component>
 </project>
