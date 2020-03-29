@@ -7,15 +7,13 @@ import edu.princeton.cs.algs4.StdStats;
 public class PercolationStats {
 
     private double[] thresholds;
-    private int size;
-    private int tests;
+    private final int tests;
 
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials) {
         if (n <= 0 || trials <= 0) throw new IllegalArgumentException();
         thresholds = new double[trials];
         tests = trials;
-        size = n;
         for (int i = 0; i < trials; i++) {
             Percolation percolation = new Percolation(n);
             int threshold = 0;
@@ -27,7 +25,7 @@ public class PercolationStats {
                     threshold++;
                 }
             }
-            thresholds[i] = (double)threshold / (n * n);
+            thresholds[i] = (double) threshold / (n * n);
         }
     }
 
