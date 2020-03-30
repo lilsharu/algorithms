@@ -73,7 +73,14 @@
       <recent name="UnionFind" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Percolation">
+    <configuration name="Percolation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Percolation" />
+      <module name="Algorithms" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PercolationStats" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="UnionFind.Assignment.PercolationStats" />
       <module name="Algorithms" />
@@ -102,6 +109,15 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.PercolationStats" />
+      <item itemvalue="Application.Percolation" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Percolation" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -119,7 +135,7 @@
       <workItem from="1585226289253" duration="598000" />
       <workItem from="1585246401775" duration="6423000" />
       <workItem from="1585314296995" duration="4755000" />
-      <workItem from="1585505867662" duration="5115000" />
+      <workItem from="1585505867662" duration="14641000" />
     </task>
     <task id="LOCAL-00001" summary="Added First Two Parts of the Union Find Case Study">
       <created>1585144710061</created>
@@ -149,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585509603206</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Percolation v2">
+      <created>1585511107471</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1585511107471</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,7 +184,8 @@
     <MESSAGE value="Finished Case Study with Weighted QuickUnion and Path Compression" />
     <MESSAGE value="Started Working on first Programming Assignment" />
     <MESSAGE value="First Finished Draft of Percolation" />
-    <option name="LAST_COMMIT_MESSAGE" value="First Finished Draft of Percolation" />
+    <MESSAGE value="Percolation v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Percolation v2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="4" key="#SQL_Dialects" timestamp="1585355959081">
@@ -181,36 +205,40 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.689@0.0.1280.689" timestamp="1585270675405" />
-    <state x="221" y="0" key="CommitChangelistDialog2" timestamp="1585509601542">
+    <state x="221" y="0" key="CommitChangelistDialog2" timestamp="1585511106243">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="221" y="0" key="CommitChangelistDialog2/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585181356823" />
-    <state x="221" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1585509601542" />
+    <state x="221" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1585511106243" />
     <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1585356432336">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585356432336" />
     <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1585272439089" />
-    <state width="1237" height="166" key="GridCell.Tab.0.bottom" timestamp="1585509553491">
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom" timestamp="1585577514993">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585357819778" />
-    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1585509553491" />
-    <state width="1237" height="166" key="GridCell.Tab.0.center" timestamp="1585509553491">
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585577514993" />
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1585574994089" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center" timestamp="1585577514993">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585357819778" />
-    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1585509553491" />
-    <state width="1237" height="166" key="GridCell.Tab.0.left" timestamp="1585509553491">
+    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585577514993" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1585574994089" />
+    <state width="1237" height="166" key="GridCell.Tab.0.left" timestamp="1585577514993">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585357819778" />
-    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1585509553491" />
-    <state width="1237" height="166" key="GridCell.Tab.0.right" timestamp="1585509553491">
+    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585577514993" />
+    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1585574994089" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right" timestamp="1585577514993">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585357819778" />
-    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1585509553491" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585577514993" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1585574994089" />
+    <state x="360" y="56" key="RollbackChangesDialog" timestamp="1585578352555">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="360" y="56" key="RollbackChangesDialog/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585578352555" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1585356446071">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -225,10 +253,10 @@
       <screen x="1920" y="0" width="1366" height="738" />
     </state>
     <state x="2412" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689/1920.0.1366.738@1920.0.1366.738" timestamp="1585143136048" />
-    <state x="297" y="153" key="run.anything.popup" timestamp="1585509018225">
+    <state x="297" y="153" key="run.anything.popup" timestamp="1585571150013">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="297" y="153" key="run.anything.popup/0.0.1280.689@0.0.1280.689" timestamp="1585509018225" />
+    <state x="297" y="153" key="run.anything.popup/0.0.1280.689@0.0.1280.689" timestamp="1585571150013" />
     <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1585356329861">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
