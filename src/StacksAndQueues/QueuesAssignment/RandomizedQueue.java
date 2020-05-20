@@ -6,116 +6,121 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.*;
 
 public class RandomizedQueue<T> implements Iterable<T> {
-    private Node first, last;
+    
+    private T[] items;
     private int size = 0;
-    
-    // construct an empty randomized queue
-    
+   
     public RandomizedQueue() {
-    
-    }
-    
-    private class Node {
-        T item;
-        Node next;
-        Node previous;
+        items = (T[]) new Object[2];
     }
     
     public boolean isEmpty() {
         return size == 0;
     }
     
-    public void enqueue(T item) {
-        if (item == null) throw new IllegalArgumentException("Item can not be null");
-    
-        Node oldLast = last;
-        
-        last = new Node();
-        last.item = item;
-        last.next = null;
-        last.previous = null;
-        
-        if (isEmpty()) first = last;
-        else {
-            oldLast.next = last;
-            last.previous = oldLast;
-        }
-        
-        size++;
-    }
-    
-    public T dequeue() {
-        if (isEmpty()) throw new NoSuchElementException("The RandomizedQueue is empty, nothing to remove");
-    
-        int random = StdRandom.uniform(size);
-        
-        Node toRemove = first;
-        for (int i = 0; i < random; i++) {
-            toRemove = toRemove.next;
-        }
-    
-        size--;
-        
-        if (isEmpty()) {
-            last = null;
-            first = null;
-        }
-        else {
-            toRemove.previous.next = toRemove.next;
-            toRemove.next.previous = toRemove.previous;
-        }
-        
-        return toRemove.item;
-    }
-
-    // return the number of items on the randomized queue
     public int size() {
         return size;
     }
-
     
-    // return a random item (but do not remove it)
-    public T sample() {
-        if (isEmpty()) throw new NoSuchElementException("The RandomizedQueue is empty, nothing to remove");
-    
-        int random = StdRandom.uniform(size);
-    
-        Node toRemove = first;
-        for (int i = 0; i < random; i++) {
-            toRemove = toRemove.next;
-        }
+    public void enqueue(T item) {
+        if (item == null) throw new IllegalArgumentException("Item to input can not be null");
         
-        return toRemove.item;
+        if (isFull())
+            doubleStorage();
+        
+        items[size++] = item;
     }
     
-    // return an independent iterator over items in random order
+    public T dequeue() {
+        if (isEmpty()) throw new NoSuchElementException("The Queue is Empty");
+        
+        int randomIndex = StdRandom.uniform(size--);
+        
+        T toRemove = items[randomIndex];
+        items[randomIndex] = items[size];
+        items[size] = null;
+        
+        if (isOversized())
+            halveStorage();
+        
+        
+        return toRemove;
+    }
+    
+    public T sample() {
+        if (isEmpty()) throw new NoSuchElementException("The Queue is Empty");
+    
+        return items[StdRandom.uniform(size)];
+    }
+    
+    private boolean isFull() {
+        return items.length == size;
+    }
+    
+    private boolean isOversized() {
+        return items.length > 2 && size <= items.length / 4;
+    }
+    
+    private void doubleStorage() {
+        resizeStorage(items.length * 2);
+    }
+    
+    private void halveStorage() {
+        resizeStorage(items.length / 2);
+    }
+    
+    private void resizeStorage(int newSize) {
+        T[] newStorage = (T[]) new Object[newSize];
+        
+        for (int i = 0; i < size; i++) {
+            newStorage[i] = items[i];
+        }
+        items = newStorage;
+    }
+    
     public Iterator<T> iterator() {
         return new RandomizedQueueIterator();
     }
     
     private class RandomizedQueueIterator implements Iterator<T> {
-        private Node current = first;
+        private T[] randomItems;
+        private int current;
+        
+        public RandomizedQueueIterator() {
+            randomItems = (T[]) new Object[size];
+            for (int i = 0; i < size; i++) {
+                randomItems[i] = items[i];
+            }
+            
+            StdRandom.shuffle(randomItems);
+            current = 0;
+        }
         
         public boolean hasNext() {
-            return current != null;
+            return current < size;
         }
         
         public T next() {
-            T item = current.item;
-            current = current.next;
-            return item;
+            if (hasNext()) {
+                return randomItems[current++];
+            }
+            else{
+                throw new NoSuchElementException("The Queue is Empty when moving next");
+            }
+    
         }
         
         public void remove() {
-            /* not supported */
+            throw new UnsupportedOperationException("\nRemove Feature is not Supported");
         }
     }
     
     // unit testing (required)
     public static void main(String[] args) {
         RandomizedQueue<Integer> tester = new RandomizedQueue<>();
-        
-        StdOut.println(tester.size);
+    
+        StdOut.printf("Size: %d\n", tester.size());
+        StdOut.println();
         
         tester.enqueue(1);
         print(tester);
@@ -128,20 +133,27 @@ public class RandomizedQueue<T> implements Iterable<T> {
         tester.enqueue(5);
         print(tester);
         
-        StdOut.println(tester.sample());
+        StdOut.println();
         
-        StdOut.println(tester.size);
+        StdOut.printf("Sample: %d\n", tester.sample());
+    
+        StdOut.println();
+    
+        StdOut.printf("Size: %d\n", tester.size());
         
-        tester.dequeue();
+        StdOut.printf("\nRemoved %d\n", tester.dequeue());
         print(tester);
-        tester.dequeue();
+        StdOut.printf("\nRemoved %d\n", tester.dequeue());
         print(tester);
-        tester.dequeue();
+        StdOut.printf("\nRemoved %d\n", tester.dequeue());
         print(tester);
-        tester.dequeue();
+        StdOut.printf("\nRemoved %d\n", tester.dequeue());
         print(tester);
-        tester.dequeue();
-        print(tester);
+        StdOut.printf("\nRemoved %d\n", tester.dequeue());
+    
+        StdOut.println();
+    
+        StdOut.printf("Is Empty? %b\n", tester.isEmpty());
     }
     
     private static void print(RandomizedQueue<Integer> tester) {
