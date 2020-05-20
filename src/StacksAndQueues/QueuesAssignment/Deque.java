@@ -2,7 +2,8 @@ package StacksAndQueues.QueuesAssignment;
 
 import edu.princeton.cs.algs4.StdOut;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class Deque<T> implements Iterable<T> {
     
