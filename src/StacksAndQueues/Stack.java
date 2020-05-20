@@ -1,6 +1,8 @@
 package StacksAndQueues;
 
-public class Stack<T> {
+import java.util.*;
+
+public class Stack<T> implements Iterable<T>{
     private Node first = null;
     
     private class Node {
@@ -23,5 +25,27 @@ public class Stack<T> {
         T item = first.item;
         first = first.next;
         return item;
+    }
+    
+    public Iterator<T> iterator() {
+        return new ListIterator();
+    }
+    
+    private class ListIterator implements Iterator<T> {
+        private Node current = first;
+        
+        public boolean hasNext() {
+            return current != null;
+        }
+        
+        public void remove() {
+            /* not supported */
+        }
+        
+        public T next() {
+            T item = current.item;
+            current = current.next;
+            return item;
+        }
     }
 }
