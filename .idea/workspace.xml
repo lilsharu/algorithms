@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861b081c-69a4-4d4d-87e2-318aba14028b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/StacksAndQueues/ResizingArrayStackOfStrings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/StacksAndQueues/QueueOfStrings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +137,8 @@
       <workItem from="1585505867662" duration="14699000" />
       <workItem from="1585917465601" duration="588000" />
       <workItem from="1589496576361" duration="611000" />
-      <workItem from="1589547564304" duration="1398000" />
+      <workItem from="1589547564304" duration="1650000" />
+      <workItem from="1589932467341" duration="329000" />
     </task>
     <task id="LOCAL-00001" summary="Added First Two Parts of the Union Find Case Study">
       <created>1585144710061</created>
@@ -188,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589548595157</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added Resizing Array Stack">
+      <created>1589549125384</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589549125384</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,7 +211,8 @@
     <MESSAGE value="Percolation v2" />
     <MESSAGE value="Finished Percolation" />
     <MESSAGE value="Added Stack Implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Stack Implementation" />
+    <MESSAGE value="Added Resizing Array Stack" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Resizing Array Stack" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="4" key="#SQL_Dialects" timestamp="1585355959081">
@@ -223,12 +232,12 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="395" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.689@0.0.1280.689" timestamp="1585270675405" />
-    <state x="2252" y="0" key="CommitChangelistDialog2" timestamp="1589548592469">
+    <state x="2252" y="0" key="CommitChangelistDialog2" timestamp="1589549121952">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="221" y="0" key="CommitChangelistDialog2/0.0.1280.689/1920.0.1366.738@0.0.1280.689" timestamp="1585579402574" />
     <state x="221" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1585511106243" />
-    <state x="2252" y="0" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589548592469" />
+    <state x="2252" y="0" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1589549121952" />
     <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1585356432336">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
