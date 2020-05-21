@@ -1,18 +1,16 @@
-package StacksAndQueues.QueuesAssignment;
-
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Deque<T> implements Iterable<T> {
+public class Deque<Item> implements Iterable<Item> {
     
     private Node first, last;
     
     private int size = 0;
     
     private class Node {
-        T item;
+        Item item;
         Node next = null;
         Node previous = null;
     }
@@ -29,7 +27,7 @@ public class Deque<T> implements Iterable<T> {
         return size;
     }
     
-    public void addFirst(T item) {
+    public void addFirst(Item item) {
         if (item == null) throw new IllegalArgumentException("Item can not be null");
         
         Node oldFirst = first;
@@ -51,7 +49,7 @@ public class Deque<T> implements Iterable<T> {
         size++;
     }
     
-    public void addLast(T item) {
+    public void addLast(Item item) {
         if (item == null) throw new IllegalArgumentException("Item can not be null");
         
         Node oldLast = last;
@@ -73,9 +71,9 @@ public class Deque<T> implements Iterable<T> {
         size++;
     }
     
-    public T removeFirst() {
+    public Item removeFirst() {
         if (isEmpty()) throw new NoSuchElementException("The Deque is empty, nothing to remove");
-        T item = first.item;
+        Item item = first.item;
         
         first = first.next;
     
@@ -91,9 +89,9 @@ public class Deque<T> implements Iterable<T> {
         
     }
     
-    public T removeLast() {
+    public Item removeLast() {
         if (isEmpty()) throw new NoSuchElementException("The Deque is empty, nothing to remove");
-        T item = last.item;
+        Item item = last.item;
         
         last = last.previous;
         
@@ -109,25 +107,27 @@ public class Deque<T> implements Iterable<T> {
         return item;
     }
     
-    public Iterator<T> iterator() {
+    public Iterator<Item> iterator() {
         return new DequeIterator();
     }
     
-    private class DequeIterator implements Iterator<T> {
+    private class DequeIterator implements Iterator<Item> {
         private Node current = first;
         
         public boolean hasNext() {
             return current != null;
         }
         
-        public T next() {
-            T item = current.item;
+        public Item next() {
+            if (!hasNext()) throw new NoSuchElementException("The Deque is empty, nothing to remove");
+    
+            Item item = current.item;
             current = current.next;
             return item;
         }
-        
+    
         public void remove() {
-            /* not supported */
+            throw new UnsupportedOperationException("Remove Feature is not Supported");
         }
     }
     
@@ -152,7 +152,7 @@ public class Deque<T> implements Iterable<T> {
         StdOut.print(String.format("Removed %d", tester.removeLast()));
         print(tester);
         StdOut.print(String.format("Removed %d", tester.removeFirst()));
-        if (tester.isEmpty()) StdOut.println("Tester is Empty");
+        if (tester.isEmpty()) StdOut.println("Itemester is Empty");
     }
     
     private static void print(Deque<Integer> tester) {

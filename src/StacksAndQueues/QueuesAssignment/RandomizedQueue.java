@@ -1,17 +1,16 @@
-package StacksAndQueues.QueuesAssignment;
-
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class RandomizedQueue<T> implements Iterable<T> {
+public class RandomizedQueue<Item> implements Iterable<Item> {
     
-    private T[] items;
+    private Item[] items;
     private int size = 0;
    
     public RandomizedQueue() {
-        items = (T[]) new Object[2];
+        items = (Item[]) new Object[2];
     }
     
     public boolean isEmpty() {
@@ -22,7 +21,7 @@ public class RandomizedQueue<T> implements Iterable<T> {
         return size;
     }
     
-    public void enqueue(T item) {
+    public void enqueue(Item item) {
         if (item == null) throw new IllegalArgumentException("Item to input can not be null");
         
         if (isFull())
@@ -31,12 +30,12 @@ public class RandomizedQueue<T> implements Iterable<T> {
         items[size++] = item;
     }
     
-    public T dequeue() {
-        if (isEmpty()) throw new NoSuchElementException("The Queue is Empty");
+    public Item dequeue() {
+        if (isEmpty()) throw new NoSuchElementException("Itemhe Queue is Empty");
         
         int randomIndex = StdRandom.uniform(size--);
         
-        T toRemove = items[randomIndex];
+        Item toRemove = items[randomIndex];
         items[randomIndex] = items[size];
         items[size] = null;
         
@@ -47,8 +46,8 @@ public class RandomizedQueue<T> implements Iterable<T> {
         return toRemove;
     }
     
-    public T sample() {
-        if (isEmpty()) throw new NoSuchElementException("The Queue is Empty");
+    public Item sample() {
+        if (isEmpty()) throw new NoSuchElementException("Itemhe Queue is Empty");
     
         return items[StdRandom.uniform(size)];
     }
@@ -70,7 +69,7 @@ public class RandomizedQueue<T> implements Iterable<T> {
     }
     
     private void resizeStorage(int newSize) {
-        T[] newStorage = (T[]) new Object[newSize];
+        Item[] newStorage = (Item[]) new Object[newSize];
         
         for (int i = 0; i < size; i++) {
             newStorage[i] = items[i];
@@ -78,16 +77,16 @@ public class RandomizedQueue<T> implements Iterable<T> {
         items = newStorage;
     }
     
-    public Iterator<T> iterator() {
+    public Iterator<Item> iterator() {
         return new RandomizedQueueIterator();
     }
     
-    private class RandomizedQueueIterator implements Iterator<T> {
-        private T[] randomItems;
+    private class RandomizedQueueIterator implements Iterator<Item> {
+        private final Item[] randomItems;
         private int current;
         
         public RandomizedQueueIterator() {
-            randomItems = (T[]) new Object[size];
+            randomItems = (Item[]) new Object[size];
             for (int i = 0; i < size; i++) {
                 randomItems[i] = items[i];
             }
@@ -100,18 +99,18 @@ public class RandomizedQueue<T> implements Iterable<T> {
             return current < size;
         }
         
-        public T next() {
+        public Item next() {
             if (hasNext()) {
                 return randomItems[current++];
             }
-            else{
-                throw new NoSuchElementException("The Queue is Empty when moving next");
+            else {
+                throw new NoSuchElementException("Itemhe Queue is Empty when moving next");
             }
     
         }
         
         public void remove() {
-            throw new UnsupportedOperationException("\nRemove Feature is not Supported");
+            throw new UnsupportedOperationException("Remove Feature is not Supported");
         }
     }
     
