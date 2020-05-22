@@ -15,8 +15,7 @@ public class BruteCollinearPoints {
     
     public BruteCollinearPoints(Point[] points) {
         try {
-            HashMap<Double, ArrayList<Point>> pointMap = new HashMap<>();
-    
+            
             Arrays.sort(points);
             int len = points.length;
     
@@ -28,22 +27,13 @@ public class BruteCollinearPoints {
                         double slope2 = points[p].slopeTo(points[r]);
                         if (slope2 == Double.NEGATIVE_INFINITY)
                             throw new IllegalArgumentException("Can not have repeat points");
+                        if ((int)(slope1 * 100) != (int)(slope2 * 100)) continue;
                         for (int s = r + 1; s < len; s++) {
                             double slope3 = points[p].slopeTo(points[s]);
                             if (slope3 == Double.NEGATIVE_INFINITY)
                                 throw new IllegalArgumentException("Can not have repeat points");
-                            if ((int)(slope1 * 100) == (int)(slope2 * 100) && (int)(slope2 * 100) == (int)(slope3 * 100)) {
-                                List<Point> dataOfSlope = pointMap.get(slope1);
-                                ArrayList<Point> pointsList = new ArrayList<>(Arrays.asList(points[p], points[q], points[r], points[s]));
-                                if (dataOfSlope == null) {
-                                    pointMap.put(slope1, pointsList);
-                                    segmentList.add(new LineSegment(points[p], points[s]));
-                                }
-                                else if (!dataOfSlope.contains(points[p])) {
-                                    pointsList.addAll(dataOfSlope);
-                                    pointMap.put(slope1, pointsList);
-                                    segmentList.add(new LineSegment(points[p], points[s]));
-                                }
+                            if ((int)(slope2 * 100) == (int)(slope3 * 100)) {
+                                segmentList.add(new LineSegment(points[p], points[s]));
                             }
                         }
                     }
