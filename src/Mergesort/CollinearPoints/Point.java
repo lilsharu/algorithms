@@ -6,8 +6,8 @@ import java.util.Comparator;
 
 public class Point implements Comparable<Point> {
     
-    int x;
-    int y;
+    private final int x;
+    private final int y;
     
     public Point(int x, int y) {
         this.x = x;

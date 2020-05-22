@@ -11,11 +11,12 @@ import java.util.List;
 
 public class BruteCollinearPoints {
     
-    private ArrayList<LineSegment> segmentList = new ArrayList<>();
-    HashMap<Double, List<Point>> pointMap = new HashMap<>();
+    private final ArrayList<LineSegment> segmentList = new ArrayList<>();
     
     public BruteCollinearPoints(Point[] points) {
         try {
+            HashMap<Double, ArrayList<Point>> pointMap = new HashMap<>();
+    
             Arrays.sort(points);
             int len = points.length;
     
@@ -31,7 +32,7 @@ public class BruteCollinearPoints {
                             double slope3 = points[p].slopeTo(points[s]);
                             if (slope3 == Double.NEGATIVE_INFINITY)
                                 throw new IllegalArgumentException("Can not have repeat points");
-                            if (slope1 == slope2 && slope2 == slope3) {
+                            if ((int)(slope1 * 100) == (int)(slope2 * 100) && (int)(slope2 * 100) == (int)(slope3 * 100)) {
                                 List<Point> dataOfSlope = pointMap.get(slope1);
                                 ArrayList<Point> pointsList = new ArrayList<>(Arrays.asList(points[p], points[q], points[r], points[s]));
                                 if (dataOfSlope == null) {
@@ -48,13 +49,9 @@ public class BruteCollinearPoints {
                     }
                 }
             }
-            System.out.println(pointMap);
         }
         catch (NullPointerException npe) {
-            if (points == null) {
-                throw new IllegalArgumentException("Input can not be null");
-            }
-            else throw new IllegalArgumentException("Values in input can not be null");
+            throw new IllegalArgumentException(npe);
         }
     }
     

@@ -11,35 +11,34 @@ import java.util.HashMap;
 
 public class FastCollinearPoints {
     
-    private ArrayList<LineSegment> segmentList = new ArrayList<>();
-    HashMap<Double, List<Point>> pointMap = new HashMap<>();
+    private final ArrayList<LineSegment> segmentList = new ArrayList<>();
     
     public FastCollinearPoints(Point[] points) {
         try {
+            HashMap<Double, ArrayList<Point>> pointMap = new HashMap<>();
+            
             Arrays.sort(points);
             Point[] pointsCopy = new Point[points.length];
             System.arraycopy(points, 0, pointsCopy, 0, points.length);
     
-            System.out.println(Arrays.toString(points));
-            
             for (Point p : points) {
                 Arrays.sort(pointsCopy, p.slopeOrder());
-        
+    
                 double currentSlope = p.slopeTo(pointsCopy[1]);
                 int    count        = 0;
-                
+    
                 List<Point> pointsOnLine = new ArrayList<>();
-        
+    
                 for (int i = 1; i < pointsCopy.length; i++) {
-                    if (currentSlope == Double.NEGATIVE_INFINITY)
+                    if (currentSlope == Double.NEGATIVE_INFINITY) {
                         throw new IllegalArgumentException("Can not have repeat points");
-                    if (currentSlope == p.slopeTo(pointsCopy[i])) {
+                    }
+                    if ((int) (currentSlope * 100) == (int) (p.slopeTo(pointsCopy[i]) * 100)) {
                         count++;
                         pointsOnLine.add(pointsCopy[i]);
-                        System.out.printf("%s → %s\n", p, pointsOnLine);
-                    } else {
+                    }else {
                         if (count >= 3) {
-                            ArrayList<Point> dataOfSlope = (ArrayList<Point>) pointMap.get(currentSlope);
+                            ArrayList<Point> dataOfSlope = pointMap.get(currentSlope);
                             pointsOnLine.add(0, p);
                             pointsOnLine.sort(Point::compareTo);
                             if (dataOfSlope == null) {
@@ -61,9 +60,7 @@ public class FastCollinearPoints {
             }
         }
         catch (NullPointerException npe) {
-            if (points == null)
-                throw new IllegalArgumentException("Input can not be null");
-            else throw new IllegalArgumentException("Values in input can not be null");
+            throw new IllegalArgumentException(npe);
         }
     }
     
@@ -78,8 +75,8 @@ public class FastCollinearPoints {
     public static void main(String[] args) {
         
         // read the n points from a file
-        In in = new In(args[0]);
-        int n = in.readInt();
+        In      in     = new In(args[0]);
+        int     n      = in.readInt();
         Point[] points = new Point[n];
         for (int i = 0; i < n; i++) {
             int x = in.readInt();
