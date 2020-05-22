@@ -1,108 +1,125 @@
 package Mergesort.CollinearPoints;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdOut;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.HashMap;
 
 public class FastCollinearPoints {
     
-    private final ArrayList<LineSegment> segmentList = new ArrayList<>();
+    private final ArrayList<PointTuple>  tuples   = new ArrayList<>();
+    private final ArrayList<LineSegment> segments = new ArrayList<>();
+    
     
     public FastCollinearPoints(Point[] points) {
-        try {
+        checkDuplicatedEntries(points);
+        
+        Point[] pointsCopy = Arrays.copyOf(points, points.length);
+        
+        for (Point currentPoint : points) {
+            Arrays.sort(pointsCopy, currentPoint.slopeOrder());
             
-            ArrayList<Integer> slopeList = new ArrayList<>();
-            ArrayList<ArrayList<Point>> pointList = new ArrayList<>();
+            Point startPoint = pointsCopy[0];
+            Point endPoint = pointsCopy[0];
             
-            Arrays.sort(points);
-            Point[] pointsCopy = new Point[points.length];
-            System.arraycopy(points, 0, pointsCopy, 0, points.length);
-    
-            for (Point p : points) {
-                Arrays.sort(pointsCopy, p.slopeOrder());
-    
-                double currentSlope = p.slopeTo(pointsCopy[1]);
-                int    count        = 0;
-    
-                ArrayList<Point> pointsOnLine = new ArrayList<>();
-    
-                for (int i = 1; i < pointsCopy.length; i++) {
-                    if (currentSlope == Double.NEGATIVE_INFINITY) {
-                        throw new IllegalArgumentException("Can not have repeat points");
+            double previousSlope = currentPoint.slopeTo(startPoint);
+            double currentSlope;
+            int slopeLength = 0;
+            
+            for (int i = 1; i < pointsCopy.length; i++) {
+                currentSlope = currentPoint.slopeTo(pointsCopy[i]);
+                if (currentSlope == previousSlope) {
+                    if (pointsCopy[i].compareTo(startPoint) < 0) {
+                        startPoint = pointsCopy[i];
+                    } else if (pointsCopy[i].compareTo(endPoint) > 0) {
+                        endPoint = pointsCopy[i];
                     }
-                    if ((int) (currentSlope * 100) == (int) (p.slopeTo(pointsCopy[i]) * 100)) {
-                        count++;
-                        pointsOnLine.add(pointsCopy[i]);
-                    } else {
-                        pointsOnLine.add(0, p);
-                        pointsOnLine.sort(Point::compareTo);
-                        if (count >= 3) {
-                            int slopeComparison = (int)(currentSlope * 100);
-                            if (slopeList.contains(slopeComparison)) {
-                                ArrayList<Point> pointsNext = pointList.get(slopeList.indexOf(slopeComparison));
-                                if (!pointsNext.containsAll(pointsOnLine)) {
-                                    pointsNext.addAll(pointsOnLine);
-                                    segmentList.add(new LineSegment(p, pointsOnLine.get(pointsOnLine.size() - 1)));
-                                }
-                            }
-                            else {
-                                slopeList.add(slopeComparison);
-                                pointList.add(new ArrayList<>(pointsOnLine));
-                                segmentList.add(new LineSegment(p, pointsOnLine.get(pointsOnLine.size() - 1)));
-                            }
+                    slopeLength++;
+                } else {
+                    if (slopeLength >= 2) {
+                        if (currentPoint.compareTo(startPoint) < 0) {
+                            startPoint = currentPoint;
+                        } else if (currentPoint.compareTo(endPoint) > 0) {
+                            endPoint = currentPoint;
                         }
-                        pointsOnLine.clear();
-                        count        = 1;
-                        currentSlope = p.slopeTo(pointsCopy[i]);
+                        addSlopeIfNotAddedYet(startPoint, endPoint);
                     }
+                    startPoint = pointsCopy[i];
+                    endPoint = pointsCopy[i];
+                    slopeLength = 0;
                 }
+                previousSlope = currentSlope;
+            }
+            
+            if (slopeLength >= 2) {
+                if (currentPoint.compareTo(startPoint) < 0) {
+                    startPoint = currentPoint;
+                } else if (currentPoint.compareTo(endPoint) > 0) {
+                    endPoint = currentPoint;
+                }
+                addSlopeIfNotAddedYet(startPoint, endPoint);
             }
         }
-        catch (NullPointerException npe) {
-            throw new IllegalArgumentException(npe);
+    }
+    
+    private void addSlopeIfNotAddedYet(Point startPoint, Point endPoint) {
+        PointTuple tuple = new PointTuple(startPoint, endPoint);
+        if (!tuples.contains(tuple)) {
+            tuples.add(tuple);
+            segments.add(tuple.toLineSegment());
+        }
+    }
+    
+    
+    private void checkDuplicatedEntries(Point[] points) {
+        for (int i = 0; i < points.length - 1; i++) {
+            for (int j = i + 1; j < points.length; j++) {
+                if (points[i].compareTo(points[j]) == 0) {
+                    throw new IllegalArgumentException("Duplicated entries in given points.");
+                }
+            }
         }
     }
     
     public int numberOfSegments() {
-        return segmentList.size();
+        return segments.size();
     }
     
     public LineSegment[] segments() {
-        return segmentList.toArray(LineSegment[]::new);
+        return segments.toArray(new LineSegment[segments.size()]);
     }
     
-    public static void main(String[] args) {
+    
+    private static class PointTuple {
         
-        // read the n points from a file
-        In      in     = new In(args[0]);
-        int     n      = in.readInt();
-        Point[] points = new Point[n];
-        for (int i = 0; i < n; i++) {
-            int x = in.readInt();
-            int y = in.readInt();
-            points[i] = new Point(x, y);
+        private final Point p1;
+        private final Point p2;
+        
+        private PointTuple(Point p1, Point p2) {
+            this.p1 = p1;
+            this.p2 = p2;
         }
         
-        // draw the points
-        StdDraw.enableDoubleBuffering();
-        StdDraw.setXscale(0, 32768);
-        StdDraw.setYscale(0, 32768);
-        for (Point p : points) {
-            p.draw();
+        public LineSegment toLineSegment() {
+            return new LineSegment(p1, p2);
         }
-        StdDraw.show();
         
-        // print and draw the line segments
-        FastCollinearPoints collinear = new FastCollinearPoints(points);
-        for (LineSegment segment : collinear.segments()) {
-            StdOut.println(segment);
-            segment.draw();
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            
+            PointTuple that = (PointTuple) o;
+            
+            if (p1.compareTo(that.p1) != 0) return false;
+            if (p2.compareTo(that.p2) != 0) return false;
+            
+            return true;
         }
-        StdDraw.show();
+        
+        @Override
+        public int hashCode() {
+            int result = p1.hashCode();
+            result = 31 * result + p2.hashCode();
+            return result;
+        }
     }
 }
