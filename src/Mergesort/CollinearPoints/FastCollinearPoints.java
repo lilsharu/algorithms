@@ -15,7 +15,9 @@ public class FastCollinearPoints {
     
     public FastCollinearPoints(Point[] points) {
         try {
-            HashMap<Double, ArrayList<Point>> pointMap = new HashMap<>();
+            
+            ArrayList<Integer> slopeList = new ArrayList<>();
+            ArrayList<ArrayList<Point>> pointList = new ArrayList<>();
             
             Arrays.sort(points);
             Point[] pointsCopy = new Point[points.length];
@@ -27,7 +29,7 @@ public class FastCollinearPoints {
                 double currentSlope = p.slopeTo(pointsCopy[1]);
                 int    count        = 0;
     
-                List<Point> pointsOnLine = new ArrayList<>();
+                ArrayList<Point> pointsOnLine = new ArrayList<>();
     
                 for (int i = 1; i < pointsCopy.length; i++) {
                     if (currentSlope == Double.NEGATIVE_INFINITY) {
@@ -36,20 +38,22 @@ public class FastCollinearPoints {
                     if ((int) (currentSlope * 100) == (int) (p.slopeTo(pointsCopy[i]) * 100)) {
                         count++;
                         pointsOnLine.add(pointsCopy[i]);
-                    }else {
+                    } else {
+                        pointsOnLine.add(0, p);
+                        pointsOnLine.sort(Point::compareTo);
                         if (count >= 3) {
-                            ArrayList<Point> dataOfSlope = pointMap.get(currentSlope);
-                            pointsOnLine.add(0, p);
-                            pointsOnLine.sort(Point::compareTo);
-                            if (dataOfSlope == null) {
-                                dataOfSlope = new ArrayList<>(pointsOnLine);
-                                pointMap.put(currentSlope, dataOfSlope);
-                                segmentList.add(new LineSegment(p, pointsOnLine.get(pointsOnLine.size() - 1)));
+                            int slopeComparison = (int)(currentSlope * 100);
+                            if (slopeList.contains(slopeComparison)) {
+                                ArrayList<Point> pointsNext = pointList.get(slopeList.indexOf(slopeComparison));
+                                if (!pointsNext.containsAll(pointsOnLine)) {
+                                    pointsNext.addAll(pointsOnLine);
+                                    segmentList.add(new LineSegment(p, pointsOnLine.get(pointsOnLine.size() - 1)));
+                                }
                             }
-                            else if (!(dataOfSlope.contains(p))) {
+                            else {
+                                slopeList.add(slopeComparison);
+                                pointList.add(new ArrayList<>(pointsOnLine));
                                 segmentList.add(new LineSegment(p, pointsOnLine.get(pointsOnLine.size() - 1)));
-                                dataOfSlope.addAll(pointsOnLine);
-                                pointMap.put(currentSlope, dataOfSlope);
                             }
                         }
                         pointsOnLine.clear();
