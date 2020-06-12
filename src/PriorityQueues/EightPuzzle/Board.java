@@ -10,9 +10,15 @@ public class Board {
     private int[][] tiles;
     private int n;
     
+    private int manhattan;
+    private int hamming;
+    
     public Board(int[][] tiles) {
         this.tiles = tiles;
         n = tiles.length;
+        
+        calcManhattan();
+        calcHamming();
     }
     
     public String toString() {
@@ -31,17 +37,17 @@ public class Board {
         return n;
     }
     
-    public int hamming() {
+    public void calcHamming() {
         int count = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (i + n * (j - 1) + 1 != tiles[i][j]) count++;
             }
         }
-        return count;
+        hamming = count;
     }
     
-    public int manhattan() {
+    public void calcManhattan() {
         int manCount = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -54,11 +60,19 @@ public class Board {
             }
         }
         
-        return manCount;
+        manhattan = manCount;
+    }
+    
+    public int hamming() {
+        return hamming;
+    }
+    
+    public int manhattan() {
+        return manhattan;
     }
     
     public boolean isGoal() {
-        return hamming() == 0;
+        return this.hamming == 0;
     }
     
     public boolean equals(Object y) {
@@ -76,6 +90,17 @@ public class Board {
     
         return true;
         //return (y instanceof Board && checkEquality((Board) y));
+    }
+    
+    public Board swapped() {
+        int[][] copy = getCopy();
+        
+        if (copy[0][0] != 0 || copy[0][1] != 0)
+            swap(copy, 0, 0, 0, 1);
+        else
+            swap(copy, 1, 0, 1, 1);
+        
+        return new Board(copy);
     }
     
     public Iterable<Board> neighbors() {
@@ -140,22 +165,6 @@ public class Board {
     
             neighbors = boardList.toArray(new Board[0]);
         }
-        
-        private void swap(int[][] option, int i1, int j1, int i2, int j2) {
-            int temp = tiles[i1][j1];
-            tiles[i1][j1] = option[i2][j2];
-            option[i2][j2] = temp;
-        }
-        
-        private int[][] getCopy() {
-            int[][] copy = new int[n][n];
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    copy[i][j] = tiles[i][j];
-                }
-            }
-            return copy;
-        }
     
         @Override
         public Iterator<Board> iterator() {
@@ -176,5 +185,21 @@ public class Board {
                 }
             };
         }
+    }
+    
+    private int[][] getCopy() {
+        int[][] copy = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                copy[i][j] = tiles[i][j];
+            }
+        }
+        return copy;
+    }
+    
+    private void swap(int[][] option, int i1, int j1, int i2, int j2) {
+        int temp = tiles[i1][j1];
+        tiles[i1][j1] = option[i2][j2];
+        option[i1][j2] = temp;
     }
 }
