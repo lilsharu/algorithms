@@ -1,0 +1,180 @@
+package PriorityQueues.EightPuzzle;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Board {
+    
+    private Board[] neighbors;
+    private int[][] tiles;
+    private int n;
+    
+    public Board(int[][] tiles) {
+        this.tiles = tiles;
+        n = tiles.length;
+    }
+    
+    public String toString() {
+        StringBuilder stringOutput = new StringBuilder(n * n);
+        stringOutput.append(n).append("\n");
+        for (int[] a : tiles) {
+            for (int integer : a) {
+                stringOutput.append(integer).append(" ");
+            }
+            stringOutput.append("\n");
+        }
+        return stringOutput.toString();
+    }
+    
+    public int dimension() {
+        return n;
+    }
+    
+    public int hamming() {
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i + n * (j - 1) + 1 != tiles[i][j]) count++;
+            }
+        }
+        return count;
+    }
+    
+    public int manhattan() {
+        int manCount = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i + n * (j - 1) + 1 != tiles[i][j]) {
+                    int col = (tiles[i][j] - 1) / n;
+                    int row = (tiles[i][j] - 1) % n;
+                    
+                    manCount += Math.abs(col - j) + Math.abs(row - i);
+                }
+            }
+        }
+        
+        return manCount;
+    }
+    
+    public boolean isGoal() {
+        return hamming() == 0;
+    }
+    
+    public boolean equals(Object y) {
+        if (this == y) return true;
+        if (y == null || getClass() != y.getClass()) return false;
+    
+        Board that = (Board) y;
+        if (this.tiles.length != that.tiles.length) return false;
+        for (int i = 0; i < tiles.length; i++) {
+            if (this.tiles[i].length != that.tiles[i].length) return false;
+            for (int j = 0; j < tiles[i].length; j++) {
+                if (this.tiles[i][j] != that.tiles[i][j]) return false;
+            }
+        }
+    
+        return true;
+        //return (y instanceof Board && checkEquality((Board) y));
+    }
+    
+    public Iterable<Board> neighbors() {
+        return new NeighborIterator();
+    }
+    
+    private class NeighborIterator implements Iterable<Board> {
+        
+        int currentPos = 0;
+        
+        public NeighborIterator() {
+            int row = -1;
+            int col = -1;
+            overall:
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (tiles[i][j] == 0) {
+                        row = j;
+                        col = i;
+                        break overall;
+                    }
+                }
+            }
+            
+            List<Board> boardList = new ArrayList<>();
+            
+            try {
+                int[][] arr = getCopy();
+                swap(arr, col, row, col, row - 1);
+                boardList.add(new Board(arr));
+            }
+            catch (IndexOutOfBoundsException e) {
+                //Do Nothing
+            }
+    
+            try {
+                int[][] arr = getCopy();
+                swap(arr, col, row, col - 1, row);
+                boardList.add(new Board(arr));
+            }
+            catch (IndexOutOfBoundsException e) {
+                //Do Nothing
+            }
+    
+            try {
+                int[][] arr = getCopy();
+                swap(arr, col, row, col + 1, row);
+                boardList.add(new Board(arr));
+            }
+            catch (IndexOutOfBoundsException e) {
+                //Do Nothing
+            }
+    
+            try {
+                int[][] arr = getCopy();
+                swap(arr, col, row, col, row + 1);
+                boardList.add(new Board(arr));
+            }
+            catch (IndexOutOfBoundsException e) {
+                //Do Nothing
+            }
+    
+            neighbors = boardList.toArray(new Board[0]);
+        }
+        
+        private void swap(int[][] option, int i1, int j1, int i2, int j2) {
+            int temp = tiles[i1][j1];
+            tiles[i1][j1] = option[i2][j2];
+            option[i2][j2] = temp;
+        }
+        
+        private int[][] getCopy() {
+            int[][] copy = new int[n][n];
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    copy[i][j] = tiles[i][j];
+                }
+            }
+            return copy;
+        }
+    
+        @Override
+        public Iterator<Board> iterator() {
+            return new Iterator<Board>() {
+                @Override
+                public boolean hasNext() {
+                    return currentPos < neighbors.length;
+                }
+    
+                @Override
+                public Board next() {
+                    return neighbors[currentPos++];
+                }
+    
+                @Override
+                public void remove() {
+                    throw new UnsupportedOperationException("Removing is not supported");
+                }
+            };
+        }
+    }
+}
