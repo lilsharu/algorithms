@@ -1,15 +1,18 @@
 package PriorityQueues.EightPuzzle;
 
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.MinPQ;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 public class Solver {
     
-    private boolean solvable;
-    private int steps;
+    private final boolean solvable;
+    private final int     steps;
     
     private List<Board> path = new ArrayList<>();
     
@@ -36,51 +39,56 @@ public class Solver {
     public Solver(Board initial) {
         if (initial == null) throw new IllegalArgumentException("Argument can not be null!");
         
-        int count = 0;
-        
-        MinPQ<Node> boardQueueRegular = new MinPQ<>();
-        MinPQ<Node> boardQueueSwapped = new MinPQ<>();
+        MinPQ<Node> boardQueueRegular = new MinPQ<>(new NodeComparator());
+        MinPQ<Node> boardQueueSwapped = new MinPQ<>(new NodeComparator());
+    
+        System.out.println("Made Priority Queues");
         
         Node mainRoot    = new Node(0, initial, null);
         Node swappedRoot = new Node(0, initial.swapped(), null);
+    
         
         boardQueueRegular.insert(mainRoot);
         boardQueueSwapped.insert(swappedRoot);
         
         while (!boardQueueRegular.min().current.isGoal() && !boardQueueSwapped.min().current.isGoal()) {
-            count++;
-            Node regular = boardQueueRegular.min();
+            Node regular = boardQueueRegular.delMin();
             for (Board b : regular.current.neighbors()) {
-                if (b.equals(regular.previous.current)) continue;
-                Node nextNode = new Node(count, b, regular);
-                boardQueueRegular.insert(nextNode);
+                if (notAlreadyInPath(regular, b)) {
+                    boardQueueRegular.insert(new Node(regular.moves + 1, b, regular));
+                }
             }
             
-            Node swapped = boardQueueSwapped.min();
-            for (Board b : regular.current.neighbors()) {
-                if (b.equals(swapped.previous.current)) continue;
-                Node nextNode = new Node(count, b, regular);
-                boardQueueRegular.insert(nextNode);
+            Node swapped = boardQueueSwapped.delMin();
+            for (Board b : swapped.current.neighbors()) {
+                if (notAlreadyInPath(swapped, b)) {
+                    boardQueueSwapped.insert(new Node(swapped.moves + 1, b, swapped));
+                }
             }
         }
-        
-        if (boardQueueSwapped.min().current.isGoal()) {
-            solvable = false;
-            steps = -1;
+        System.out.println("Left While Loop");
+        Node finalNode = boardQueueRegular.delMin();
+        solvable = finalNode.current.isGoal();
+        if (solvable) {
+            while ((finalNode = finalNode.previous) != null) {
+                path.add(0, finalNode.current);
+            }
+            steps = path.size() - 1;
         }
-        
         else {
-            solvable = true;
-            Node current = boardQueueRegular.min();
-            while (current.current != null) {
-                path.add(current.current);
-                current = current.previous;
-            }
-            steps = path.size();
+            path = null;
+            steps = -1;
         }
     }
     
-    
+    private boolean notAlreadyInPath(Node previous, Board current) {
+        while ((previous = previous.previous) != null) {
+            if (previous.current.equals(current))
+                return false;
+        }
+        
+        return true;
+    }
     
     public boolean isSolvable() {
         return solvable;
@@ -91,8 +99,49 @@ public class Solver {
     }
     
     public Iterable<Board> solution() {
-        return path;
+        if (solvable) {
+            return () -> new Iterator<>() {
+        
+                int current;
+        
+                @Override
+                public boolean hasNext() {
+                    return current < path.size();
+                }
+        
+                @Override
+                public Board next() {
+                    return path.get(current++);
+                }
+        
+                @Override
+                public void remove() {
+                    throw new UnsupportedOperationException("The operation of removal is not supported");
+                }
+            };
+        }
+        
+        return null;
     }
+    
+//    private class SolutionIterator implements Iterator<Board>{
+//        private int index = 0;
+//
+//        @Override
+//        public boolean hasNext() {
+//            return index < steps;
+//        }
+//
+//        @Override
+//        public Board next() {
+//            return path.get(index++);
+//        }
+//
+//        @Override
+//        public void remove() {
+//            throw new UnsupportedOperationException("There is no removal functionality");
+//        }
+//    }
     
     public static void main(String[] args) {
         // create initial board from file
@@ -102,6 +151,7 @@ public class Solver {
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
                  tiles[i][j] = in.readInt();
+            
         Board initial = new Board(tiles);
     
         // solve the puzzle
@@ -114,6 +164,13 @@ public class Solver {
             StdOut.println("Minimum number of moves = " + solver.moves());
             for (Board board : solver.solution())
                 StdOut.println(board);
+        }
+    }
+    
+    private static class NodeComparator implements Comparator<Node> {
+        @Override
+        public int compare(Node a, Node b) {
+            return Integer.compare(a.getPriority(), b.getPriority());
         }
     }
 }

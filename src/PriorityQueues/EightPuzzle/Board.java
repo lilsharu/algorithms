@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Board {
     
-    private Board[] neighbors;
+    private Board[] neighbors = null;
     private int[][] tiles;
     private int n;
     
@@ -25,6 +25,7 @@ public class Board {
         StringBuilder stringOutput = new StringBuilder(n * n);
         stringOutput.append(n).append("\n");
         for (int[] a : tiles) {
+            stringOutput.append(" ");
             for (int integer : a) {
                 stringOutput.append(integer).append(" ");
             }
@@ -41,7 +42,7 @@ public class Board {
         int count = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (i + n * (j - 1) + 1 != tiles[i][j]) count++;
+                if (i + n * (j - 1) + 1 != tiles[i][j] && tiles[i][j] != 0) count++;
             }
         }
         hamming = count;
@@ -51,7 +52,7 @@ public class Board {
         int manCount = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (i + n * (j - 1) + 1 != tiles[i][j]) {
+                if (i + n * (j - 1) + 1 != tiles[i][j] && tiles[i][j] != 0) {
                     int col = (tiles[i][j] - 1) / n;
                     int row = (tiles[i][j] - 1) % n;
                     
@@ -104,68 +105,87 @@ public class Board {
     }
     
     public Iterable<Board> neighbors() {
-        return new NeighborIterator();
+        if (neighbors == null || neighbors.length == 0) {
+            findNeighbors();
+        }
+        return () -> new Iterator<>() {
+            int currentIndex = 0;
+    
+            @Override
+            public boolean hasNext() {
+                return currentIndex < neighbors.length;
+            }
+    
+            @Override
+            public Board next() {
+                return neighbors[currentIndex++];
+            }
+        };
     }
+    
+    public void findNeighbors() {
+        int row = -1;
+        int col = -1;
+        
+        overall:
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (tiles[i][j] == 0) {
+                    row = j;
+                    col = i;
+                    break overall;
+                }
+            }
+        }
+        
+        List<Board> boardList = new ArrayList<>();
+        
+        try {
+            int[][] arr = getCopy();
+            swap(arr, col, row, col, row - 1);
+            boardList.add(new Board(arr));
+        }
+        catch (IndexOutOfBoundsException e) {
+            //Do Nothing
+        }
+        
+        try {
+            int[][] arr = getCopy();
+            swap(arr, col, row, col - 1, row);
+            boardList.add(new Board(arr));
+        }
+        catch (IndexOutOfBoundsException e) {
+            //Do Nothing
+        }
+        
+        try {
+            int[][] arr = getCopy();
+            swap(arr, col, row, col + 1, row);
+            boardList.add(new Board(arr));
+        }
+        catch (IndexOutOfBoundsException e) {
+            //Do Nothing
+        }
+        
+        try {
+            int[][] arr = getCopy();
+            swap(arr, col, row, col, row + 1);
+            boardList.add(new Board(arr));
+        }
+        catch (IndexOutOfBoundsException e) {
+            //Do Nothing
+        }
+        
+        neighbors = boardList.toArray(new Board[boardList.size()]);
+//        System.out.println(boardList);
+//        System.out.println("Found Neighbors");
+    }
+    
     
     private class NeighborIterator implements Iterable<Board> {
         
         int currentPos = 0;
         
-        public NeighborIterator() {
-            int row = -1;
-            int col = -1;
-            overall:
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    if (tiles[i][j] == 0) {
-                        row = j;
-                        col = i;
-                        break overall;
-                    }
-                }
-            }
-            
-            List<Board> boardList = new ArrayList<>();
-            
-            try {
-                int[][] arr = getCopy();
-                swap(arr, col, row, col, row - 1);
-                boardList.add(new Board(arr));
-            }
-            catch (IndexOutOfBoundsException e) {
-                //Do Nothing
-            }
-    
-            try {
-                int[][] arr = getCopy();
-                swap(arr, col, row, col - 1, row);
-                boardList.add(new Board(arr));
-            }
-            catch (IndexOutOfBoundsException e) {
-                //Do Nothing
-            }
-    
-            try {
-                int[][] arr = getCopy();
-                swap(arr, col, row, col + 1, row);
-                boardList.add(new Board(arr));
-            }
-            catch (IndexOutOfBoundsException e) {
-                //Do Nothing
-            }
-    
-            try {
-                int[][] arr = getCopy();
-                swap(arr, col, row, col, row + 1);
-                boardList.add(new Board(arr));
-            }
-            catch (IndexOutOfBoundsException e) {
-                //Do Nothing
-            }
-    
-            neighbors = boardList.toArray(new Board[0]);
-        }
-    
         @Override
         public Iterator<Board> iterator() {
             return new Iterator<Board>() {
@@ -198,8 +218,8 @@ public class Board {
     }
     
     private void swap(int[][] option, int i1, int j1, int i2, int j2) {
-        int temp = tiles[i1][j1];
-        tiles[i1][j1] = option[i2][j2];
-        option[i1][j2] = temp;
+        int temp = option[i1][j1];
+        option[i1][j1] = option[i2][j2];
+        option[i2][j2] = temp;
     }
 }
