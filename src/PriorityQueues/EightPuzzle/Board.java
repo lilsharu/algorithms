@@ -38,7 +38,7 @@ public class Board {
         return n;
     }
     
-    public void calcHamming() {
+    private void calcHamming() {
         int count = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -48,7 +48,7 @@ public class Board {
         hamming = count;
     }
     
-    public void calcManhattan() {
+    private void calcManhattan() {
         int manCount = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -93,7 +93,7 @@ public class Board {
         //return (y instanceof Board && checkEquality((Board) y));
     }
     
-    public Board swapped() {
+    public Board twin() {
         int[][] copy = getCopy();
         
         if (copy[0][0] != 0 || copy[0][1] != 0)
@@ -123,7 +123,7 @@ public class Board {
         };
     }
     
-    public void findNeighbors() {
+     private void findNeighbors() {
         int row = -1;
         int col = -1;
         

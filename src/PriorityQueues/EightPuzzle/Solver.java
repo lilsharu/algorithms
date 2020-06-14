@@ -45,7 +45,7 @@ public class Solver {
         System.out.println("Made Priority Queues");
         
         Node mainRoot    = new Node(0, initial, null);
-        Node swappedRoot = new Node(0, initial.swapped(), null);
+        Node swappedRoot = new Node(0, initial.twin(), null);
     
         
         boardQueueRegular.insert(mainRoot);
