@@ -1,8 +1,7 @@
-package PriorityQueues.EightPuzzle;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Board {
     
@@ -14,7 +13,7 @@ public class Board {
     private int hamming;
     
     public Board(int[][] tiles) {
-        this.tiles = tiles;
+        this.tiles = (tiles);
         n = tiles.length;
         
         calcManhattan();
@@ -42,7 +41,7 @@ public class Board {
         int count = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (i + n * (j - 1) + 1 != tiles[i][j] && tiles[i][j] != 0) count++;
+                if (j + n * (i) + 1 != tiles[i][j] && tiles[i][j] != 0) count++;
             }
         }
         hamming = count;
@@ -52,11 +51,12 @@ public class Board {
         int manCount = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (i + n * (j - 1) + 1 != tiles[i][j] && tiles[i][j] != 0) {
-                    int col = (tiles[i][j] - 1) / n;
-                    int row = (tiles[i][j] - 1) % n;
+                int temp = tiles[i][j];
+                if (temp != 0 && j + n * i + 1 != temp--) {
+                    int col = (temp) / n;
+                    int row = (temp) % n;
                     
-                    manCount += Math.abs(col - j) + Math.abs(row - i);
+                    manCount += Math.abs(col - i) + Math.abs(row - j);
                 }
             }
         }
@@ -90,13 +90,12 @@ public class Board {
         }
     
         return true;
-        //return (y instanceof Board && checkEquality((Board) y));
     }
     
     public Board twin() {
         int[][] copy = getCopy();
         
-        if (copy[0][0] != 0 || copy[0][1] != 0)
+        if (copy[0][0] != 0 && copy[0][1] != 0)
             swap(copy, 0, 0, 0, 1);
         else
             swap(copy, 1, 0, 1, 1);
@@ -118,7 +117,12 @@ public class Board {
     
             @Override
             public Board next() {
-                return neighbors[currentIndex++];
+                try {
+                    return neighbors[currentIndex++];
+                }
+                catch (IndexOutOfBoundsException e) {
+                    throw new NoSuchElementException("There is no such element");
+                }
             }
         };
     }
@@ -155,7 +159,7 @@ public class Board {
             boardList.add(new Board(arr));
         }
         catch (IndexOutOfBoundsException e) {
-            //Do Nothing
+            // Do Nothing
         }
         
         try {
@@ -164,7 +168,7 @@ public class Board {
             boardList.add(new Board(arr));
         }
         catch (IndexOutOfBoundsException e) {
-            //Do Nothing
+            // Do Nothing
         }
         
         try {
@@ -173,45 +177,20 @@ public class Board {
             boardList.add(new Board(arr));
         }
         catch (IndexOutOfBoundsException e) {
-            //Do Nothing
+            // Do Nothing
         }
         
         neighbors = boardList.toArray(new Board[boardList.size()]);
-//        System.out.println(boardList);
-//        System.out.println("Found Neighbors");
-    }
-    
-    
-    private class NeighborIterator implements Iterable<Board> {
-        
-        int currentPos = 0;
-        
-        @Override
-        public Iterator<Board> iterator() {
-            return new Iterator<Board>() {
-                @Override
-                public boolean hasNext() {
-                    return currentPos < neighbors.length;
-                }
-    
-                @Override
-                public Board next() {
-                    return neighbors[currentPos++];
-                }
-    
-                @Override
-                public void remove() {
-                    throw new UnsupportedOperationException("Removing is not supported");
-                }
-            };
-        }
     }
     
     private int[][] getCopy() {
+        return getCopy(tiles);
+    }
+    private int[][] getCopy(int[][] arr) {
         int[][] copy = new int[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                copy[i][j] = tiles[i][j];
+                copy[i][j] = arr[i][j];
             }
         }
         return copy;
