@@ -21,10 +21,11 @@ public class BST<Key extends Comparable<Key>, Value> {
     public Value get(Key key) {
         Node current = root;
 
-        while (current != null && !current.key.equals(key)) {
-            if (less(key, current.key)) current = current.left;
-            else if (key.equals(current.key)) return current.val;
-            else current = current.right;
+        while (current != null) {
+            int comp = key.compareTo(current.key)
+            if (comp < 0) current = current.left;
+            else if (comp > 0) current = current.right;
+            else return current.val;
         }
 
         return null;
